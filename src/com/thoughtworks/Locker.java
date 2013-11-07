@@ -1,5 +1,4 @@
 package com.thoughtworks;
-
 import java.util.HashMap;
 import java.util.Map;
 
@@ -12,12 +11,16 @@ public class Locker {
     }
 
     public Ticket Store(Bag bag) throws LockerFullException {
-        if(map.size() < capacity){
+        if(available()){
             Ticket ticket = new Ticket();
             map.put(ticket, bag);
             return ticket;
         }
         throw new LockerFullException();
+    }
+
+    public boolean available() {
+        return map.size() < capacity;
     }
 
     public Bag pick(Ticket ticket) {
