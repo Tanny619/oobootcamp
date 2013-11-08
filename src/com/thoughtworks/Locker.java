@@ -1,10 +1,12 @@
 package com.thoughtworks;
-import java.util.HashMap;
+
+import com.google.common.collect.Maps;
+
 import java.util.Map;
 
 public class Locker {
     private int capacity;
-    private Map<Ticket, Bag> map = new HashMap<Ticket, Bag>();
+    private Map<Ticket, Bag> map = Maps.newHashMap();
 
     public Locker(int capacity) {
         this.capacity = capacity;
@@ -24,6 +26,8 @@ public class Locker {
     }
 
     public Bag pick(Ticket ticket) {
-        return map.get(ticket);
+        Bag bag = map.get(ticket);
+        map.remove(ticket);
+        return bag;
     }
 }

@@ -3,12 +3,7 @@ package com.thoughtworks;
 import java.util.ArrayList;
 
 public class BagRobot {
-    private Locker locker;
     private ArrayList<Locker> lockers;
-
-    public BagRobot(Locker locker1) {
-        locker = locker1;
-    }
 
     public BagRobot(ArrayList<Locker> lockers) {
         this.lockers = lockers;
