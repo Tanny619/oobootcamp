@@ -35,11 +35,20 @@ public class RobotTest {
 
     @Test(expected = LockerFullException.class)
     public void should_throw_exception_when_all_lockers_full() throws LockerFullException {
-        Bag bag = new Bag();
-        Locker locker = new Locker(0);
-        BagRobot bagRobot = new BagRobot(Lists.newArrayList(locker));
+//        Bag bag = new Bag();
+//        Locker locker = new Locker(0);
+//        BagRobot bagRobot = new BagRobot(Lists.newArrayList(locker));
+//
+//        bagRobot.store(bag);
 
+        Bag bag = new Bag();
+        Bag bag1 = new Bag();
+        Locker locker = new Locker(1);
+        BagRobot bagRobot = new BagRobot(Lists.newArrayList(locker));
         bagRobot.store(bag);
+        bagRobot.store(bag1);
+
+
     }
 
     @Test
@@ -50,8 +59,7 @@ public class RobotTest {
         Locker locker1 = new Locker(2);
         Locker locker2 = new Locker(1);
 
-        ArrayList<Locker> lockers = Lists.newArrayList(locker1, locker2);
-        BagRobot bagRobot = new BagRobot(lockers);
+        BagRobot bagRobot = new BagRobot(Lists.newArrayList(locker1, locker2));
 
         Ticket ticket1 = bagRobot.store(bag1);
         Ticket ticket2 = bagRobot.store(bag2);
