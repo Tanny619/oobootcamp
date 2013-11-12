@@ -1,15 +1,16 @@
 package com.thoughtworks;
 
 import com.google.common.collect.Maps;
-
 import java.util.Map;
 
 public class Locker {
     private int capacity;
     private Map<Ticket, Bag> map = Maps.newHashMap();
+    public int availableCount;
 
     public Locker(int capacity) {
         this.capacity = capacity;
+        this.availableCount = capacity;
     }
 
     public Ticket Store(Bag bag) throws LockerFullException {

@@ -2,10 +2,8 @@ import com.google.common.collect.Lists;
 import com.thoughtworks.*;
 import org.junit.Test;
 
-import java.util.ArrayList;
-
-import static org.hamcrest.CoreMatchers.*;
-import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.CoreMatchers.is;
+import static org.junit.Assert.assertThat;
 
 public class RobotTest {
 
@@ -19,7 +17,6 @@ public class RobotTest {
 
         assertThat(locker.pick(ticket), is(bag));
     }
-
 
     @Test
     public void should_robot_store_bags_to_one_locker() throws LockerFullException {
@@ -35,12 +32,6 @@ public class RobotTest {
 
     @Test(expected = LockerFullException.class)
     public void should_throw_exception_when_all_lockers_full() throws LockerFullException {
-//        Bag bag = new Bag();
-//        Locker locker = new Locker(0);
-//        BagRobot bagRobot = new BagRobot(Lists.newArrayList(locker));
-//
-//        bagRobot.store(bag);
-
         Bag bag = new Bag();
         Bag bag1 = new Bag();
         Locker locker = new Locker(1);
