@@ -12,7 +12,7 @@ public class LockerTest {
     @Test
     public void should_store_one_bag() throws LockerFullException {
         Locker locker = new Locker(1);
-        Ticket ticket = locker.Store(new Bag());
+        Ticket ticket = locker.store(new Bag());
 
         assertThat(ticket, notNullValue());
     }
@@ -20,7 +20,7 @@ public class LockerTest {
     @Test(expected = LockerFullException.class)
     public void should_throw_error_when_locker_full() throws LockerFullException {
         Locker locker = new Locker(0);
-        locker.Store(new Bag());
+        locker.store(new Bag());
     }
 
     @Test
@@ -28,7 +28,7 @@ public class LockerTest {
         Locker locker = new Locker(1);
         Bag bag = new Bag();
 
-        Ticket ticket = locker.Store(bag);
+        Ticket ticket = locker.store(bag);
 
         assertThat(locker.pick(ticket), is(bag));
     }
@@ -38,7 +38,7 @@ public class LockerTest {
         Locker locker = new Locker(1);
         Bag bag = new Bag();
 
-        Ticket ticket = locker.Store(bag);
+        Ticket ticket = locker.store(bag);
         locker.pick(ticket);
 
         assertThat(locker.pick(ticket), nullValue());
@@ -55,8 +55,8 @@ public class LockerTest {
         Locker locker = new Locker(3);
         Bag bag = new Bag();
 
-        Ticket ticket = locker.Store(bag);
-        locker.Store(new Bag());
+        Ticket ticket = locker.store(bag);
+        locker.store(new Bag());
 
         assertThat(locker.pick(ticket), is(bag));
     }

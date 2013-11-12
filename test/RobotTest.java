@@ -38,8 +38,6 @@ public class RobotTest {
         BagRobot bagRobot = new BagRobot(Lists.newArrayList(locker));
         bagRobot.store(bag);
         bagRobot.store(bag1);
-
-
     }
 
     @Test

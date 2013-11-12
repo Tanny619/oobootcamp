@@ -12,7 +12,7 @@ public class BagRobot {
     public Ticket store(Bag bag) throws LockerFullException {
         for (Locker locker : lockers) {
             if(locker.available()){
-                return locker.Store(bag);
+                return locker.store(bag);
             }
         }
         throw new LockerFullException();

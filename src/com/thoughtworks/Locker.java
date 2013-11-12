@@ -13,10 +13,11 @@ public class Locker {
         this.availableCount = capacity;
     }
 
-    public Ticket Store(Bag bag) throws LockerFullException {
+    public Ticket store(Bag bag) throws LockerFullException {
         if(available()){
             Ticket ticket = new Ticket();
             map.put(ticket, bag);
+            availableCount--;
             return ticket;
         }
         throw new LockerFullException();
@@ -29,6 +30,11 @@ public class Locker {
     public Bag pick(Ticket ticket) {
         Bag bag = map.get(ticket);
         map.remove(ticket);
+        availableCount++;
         return bag;
+    }
+
+    public double getAvailableRatio() {
+        return availableCount/capacity;
     }
 }
