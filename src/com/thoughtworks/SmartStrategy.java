@@ -9,7 +9,7 @@ public class SmartStrategy implements LockerStrategy {
         Ordering<Locker> ordering = new Ordering<Locker>() {
             @Override
             public int compare(Locker locker, Locker locker2) {
-                return (int) (locker.getAvailableRatio() - locker2.getAvailableRatio());
+                return locker.availableCount - locker2.availableCount;
             }
         };
 
