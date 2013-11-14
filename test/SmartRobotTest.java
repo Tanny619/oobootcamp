@@ -13,7 +13,7 @@ public class SmartRobotTest {
         Locker locker1 = new Locker(1);
         Locker locker2 = new Locker(5);
 
-        SmartRobot smartRobot = new SmartRobot(Lists.newArrayList(locker1, locker2));
+        BagRobot smartRobot = new BagRobot(Lists.newArrayList(locker1, locker2), new SmartStrategy());
         Ticket ticket = smartRobot.store(bag);
         assertThat(locker2.pick(ticket),is(bag));
     }
@@ -23,7 +23,7 @@ public class SmartRobotTest {
         Boolean throwException = false;
         Bag bag = new Bag();
         Locker locker = new Locker(0);
-        SmartRobot smartRobot = new SmartRobot(Lists.newArrayList(locker));
+        BagRobot smartRobot = new BagRobot(Lists.newArrayList(locker), new SmartStrategy());
         try {
             smartRobot.store(bag);
         } catch (LockerFullException e) {

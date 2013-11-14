@@ -14,7 +14,7 @@ public class BalanceRobotTest {
         Locker locker1 = new Locker(2);
         Locker locker2 = new Locker(5);
 
-        BalanceRobot balanceRobot = new BalanceRobot(Lists.newArrayList(locker1, locker2));
+        BagRobot balanceRobot = new BagRobot(Lists.newArrayList(locker1, locker2), new BalanceStrategy());
         balanceRobot.store(bag);
         Ticket ticket = balanceRobot.store(bag1);
         assertThat(locker2.pick(ticket), is(bag1));
