@@ -19,7 +19,13 @@ public class BagRobot {
     }
 
     public Bag pick(Ticket ticket) {
-        return ticket.getLocker().pick(ticket);
+        for (Locker locker : lockers) {
+            Bag bag = locker.pick(ticket);
+            if (bag != null){
+                return bag;
+            }
+        }
+        return null;
     }
 
 }

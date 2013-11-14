@@ -83,11 +83,10 @@ public class RobotTest {
     }
 
     @Test
-    public void should_robot_pick_return_null_when_empty() {
-        boolean thrown = false;
+    public void should_robot_not_pick_when_ticket_invalid() {
         Locker locker = new Locker(1);
         BagRobot bagRobot = new BagRobot(Lists.newArrayList(locker));
-        assertNull(bagRobot.pick(new Ticket(locker)));
+        assertNull(bagRobot.pick(new Ticket()));
 
 
     }

@@ -9,8 +9,7 @@ public class Ticket {
         this.locker = locker;
     }
 
-    public Locker getLocker() {
-        return locker;
+    public Ticket() {
 
     }
 }
