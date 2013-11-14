@@ -2,6 +2,7 @@ import com.google.common.collect.Lists;
 import com.thoughtworks.*;
 import org.junit.Test;
 
+import static junit.framework.Assert.assertNull;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
@@ -59,4 +60,35 @@ public class RobotTest {
         assertThat(locker2.pick(ticket3), is(bag3));
     }
 
+    @Test
+    public void should_robot_pick_one_bag() throws LockerFullException {
+        Bag bag = new Bag();
+        Locker locker = new Locker(1);
+        BagRobot bagRobot = new BagRobot(Lists.newArrayList(locker));
+        Ticket ticket = bagRobot.store(bag);
+        assertThat(bagRobot.pick(ticket), is(bag));
+    }
+
+    @Test
+    public void should_robot_pick_one_from_multiple_lockers() throws LockerFullException {
+        Bag bag1 = new Bag();
+        Bag bag2 = new Bag();
+        Locker locker1 = new Locker(1);
+        Locker locker2 = new Locker(2);
+        BagRobot bagRobot = new BagRobot(Lists.newArrayList(locker1, locker2));
+        Ticket ticket1 = bagRobot.store(bag1);
+        Ticket ticket2 = bagRobot.store(bag2);
+
+        assertThat(bagRobot.pick(ticket2), is(bag2));
+    }
+
+    @Test
+    public void should_robot_pick_return_null_when_empty() {
+        boolean thrown = false;
+        Locker locker = new Locker(1);
+        BagRobot bagRobot = new BagRobot(Lists.newArrayList(locker));
+        assertNull(bagRobot.pick(new Ticket(locker)));
+
+
+    }
 }

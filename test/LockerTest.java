@@ -1,7 +1,4 @@
-import com.thoughtworks.Bag;
-import com.thoughtworks.Locker;
-import com.thoughtworks.LockerFullException;
-import com.thoughtworks.Ticket;
+import com.thoughtworks.*;
 import org.junit.Test;
 
 import static org.hamcrest.CoreMatchers.*;
@@ -47,7 +44,7 @@ public class LockerTest {
     @Test
     public void should_not_able_to_pick_with_invalid_ticket() throws LockerFullException {
         Locker locker = new Locker(1);
-        assertThat(locker.pick(new Ticket()), nullValue());
+        assertThat(locker.pick(new Ticket(locker)), nullValue());
     }
 
     @Test

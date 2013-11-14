@@ -4,6 +4,7 @@ import org.junit.Test;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
+import static org.junit.Assert.assertTrue;
 
 public class SmartRobotTest {
     @Test
@@ -17,12 +18,18 @@ public class SmartRobotTest {
         assertThat(locker2.pick(ticket),is(bag));
     }
 
-    @Test(expected = LockerFullException.class)
+    @Test
     public void should_should_store_bag_when_full() throws LockerFullException {
+        Boolean throwException = false;
         Bag bag = new Bag();
         Locker locker = new Locker(0);
         SmartRobot smartRobot = new SmartRobot(Lists.newArrayList(locker));
-        smartRobot.store(bag);
+        try {
+            smartRobot.store(bag);
+        } catch (LockerFullException e) {
+            throwException = true;
+        }
+        assertTrue(throwException);
     }
 
 

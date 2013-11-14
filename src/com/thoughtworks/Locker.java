@@ -15,7 +15,7 @@ public class Locker {
 
     public Ticket store(Bag bag) throws LockerFullException {
         if(available()){
-            Ticket ticket = new Ticket();
+            Ticket ticket = new Ticket(this);
             map.put(ticket, bag);
             availableCount--;
             return ticket;
@@ -28,6 +28,9 @@ public class Locker {
     }
 
     public Bag pick(Ticket ticket) {
+        if (map.isEmpty())
+            return null;
+
         Bag bag = map.get(ticket);
         map.remove(ticket);
         availableCount++;

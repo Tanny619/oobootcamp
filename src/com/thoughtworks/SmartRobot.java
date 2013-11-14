@@ -7,6 +7,7 @@ import java.util.List;
 
 public class SmartRobot extends BagRobot{
 
+    private final SmartRobotStrategy smartRobotStrategy = new SmartRobotStrategy(this);
     private List<Locker> lockers;
 
     public SmartRobot(ArrayList<Locker> lockers) {
@@ -15,12 +16,16 @@ public class SmartRobot extends BagRobot{
     }
 
     public Ticket store(Bag bag) throws LockerFullException {
+        return smartRobotStrategy.store(bag);
+    }
+
+    private Locker getBestLocker() {
         Ordering<Locker> ordering = new Ordering<Locker>() {
             @Override
             public int compare(Locker locker, Locker locker2) {
-                return locker.availableCount - locker2.availableCount;
+                return (int) (locker.getAvailableRatio() - locker2.getAvailableRatio());
             }
         };
-        return ordering.max(lockers).store(bag);
+        return ordering.max(lockers);
     }
 }

@@ -18,6 +18,7 @@ public class BalanceRobotTest {
         balanceRobot.store(bag);
         Ticket ticket = balanceRobot.store(bag1);
         assertThat(locker2.pick(ticket), is(bag1));
-
     }
+
+
 }

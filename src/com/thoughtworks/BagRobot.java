@@ -17,4 +17,9 @@ public class BagRobot {
         }
         throw new LockerFullException();
     }
+
+    public Bag pick(Ticket ticket) {
+        return ticket.getLocker().pick(ticket);
+    }
+
 }
