@@ -10,12 +10,8 @@ public class BagRobot {
     }
 
     public Ticket store(Bag bag) throws LockerFullException {
-        for (Locker locker : lockers) {
-            if(locker.available()){
-                return locker.store(bag);
-            }
-        }
-        throw new LockerFullException();
+        Locker result = new NormalStrategy().getBestLocker(lockers);
+        return result.store(bag);
     }
 
     public Bag pick(Ticket ticket) {

@@ -3,10 +3,11 @@ package com.thoughtworks;
 import com.google.common.collect.Ordering;
 
 import java.util.ArrayList;
+import java.util.List;
 
-public class BalanceStrategy {
+public class BalanceStrategy implements LockerStrategy {
 
-    public Locker getLocker(ArrayList<Locker> lockers) {
+    public Locker getBestLocker(List<Locker> lockers) {
         Ordering<Locker> ordering = new Ordering<Locker>() {
             @Override
             public int compare(Locker locker, Locker locker2) {

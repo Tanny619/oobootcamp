@@ -4,7 +4,7 @@ import com.google.common.collect.Ordering;
 
 import java.util.List;
 
-public class SmartStrategy {
+public class SmartStrategy implements LockerStrategy {
     public Locker getBestLocker(List<Locker> lockers) {
         Ordering<Locker> ordering = new Ordering<Locker>() {
             @Override
