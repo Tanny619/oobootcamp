@@ -1,11 +1,18 @@
 package com.thoughtworks;
 
-/**
- * Created with IntelliJ IDEA.
- * User: Tanny
- * Date: 11/14/13
- * Time: 1:07 PM
- * To change this template use File | Settings | File Templates.
- */
+import com.google.common.collect.Ordering;
+
+import java.util.List;
+
 public class SmartStrategy {
+    public Locker getBestLocker(List<Locker> lockers) {
+        Ordering<Locker> ordering = new Ordering<Locker>() {
+            @Override
+            public int compare(Locker locker, Locker locker2) {
+                return (int) (locker.getAvailableRatio() - locker2.getAvailableRatio());
+            }
+        };
+
+        return ordering.max(lockers);
+    }
 }

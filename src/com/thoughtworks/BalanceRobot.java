@@ -1,7 +1,5 @@
 package com.thoughtworks;
 
-import com.google.common.collect.Ordering;
-
 import java.util.ArrayList;
 
 public class BalanceRobot extends BagRobot {
@@ -14,13 +12,7 @@ public class BalanceRobot extends BagRobot {
     }
 
     public Ticket store(Bag bag) throws LockerFullException {
-        Ordering<Locker> ordering = new Ordering<Locker>() {
-            @Override
-            public int compare(Locker locker, Locker locker2) {
-                return (int)(locker.getAvailableRatio() - locker2.getAvailableRatio());
-            }
-        };
-        return ordering.max(lockers).store(bag);
+        Locker bestLocker = new BalanceStrategy().getLocker(lockers);
+        return bestLocker.store(bag);
     }
-
 }
